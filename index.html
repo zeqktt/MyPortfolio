@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #2a2d3e;
+            --secondary: #ff6b6b;
+            --accent: #4ecdc4;
+            --light: #f7f9fc;
+            --dark: #1a1c27;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: var(--primary);
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+        
+        /* Profile Section */
+        #profile {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+        
+        .profile-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 30px;
+        }
+        
+        .profile-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .profile-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #ff5252;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .about-content p {
+            margin-bottom: 15px;
+        }
+        
+        .credentials-list, .achievements-list, .education-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .credentials-list li, .achievements-list li, .education-list li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .credentials-list li i, .achievements-list li i, .education-list li i {
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            top: 5px;
+        }
+        
+        /* Tech Stacks Section */
+        #tech-stacks {
+            background-color: #f0f4f8;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .tech-category {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .tech-category:hover {
+            transform: translateY(-10px);
+        }
+        
+        .tech-category h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .skills-list {
+            list-style: none;
+        }
+        
+        .skills-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .skill-name {
+            flex: 1;
+            font-weight: 500;
+        }
+        
+        .skill-bar {
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            flex: 2;
+        }
+        
+        .skill-level {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 4px;
+        }
+        
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .project-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .project-content {
+            padding: 20px;
+        }
+        
+        .project-content h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .project-content p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        
+        .project-tag {
+            background: #e9ecef;
+            color: var(--primary);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+        
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        #contact .section-title h2 {
+            color: white;
+        }
+        
+        #contact .section-title::after {
+            background: var(--accent);
+        }
+        
+        .contact-info {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .contact-info p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-top: 30px;
+        }
+        
+        .social-links li {
+            margin: 0 15px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .profile-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Zeki<span>Creations</span></div>
+                <ul class="nav-links">
+                    <li><a href="#profile">Profile</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#tech-stacks">Tech Stacks</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Profile Section -->
+    <section id="profile">
+        <div class="container">
+            <div class="profile-content">
+                <img src="Assets/profilephoto.jpg" alt="Profile Picture" class="profile-img">
+                <h1>Ezekiel M. Tolentino</h1>
+                <p>UI/UX Designer & Email Marketing Designer | Creating beautiful and functional digital experiences</p>
+                <a href="#contact" class="btn">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-content">
+                    <h3>Profile</h3>
+                    <p>I am an aspiring UI/UX designer passionate about creating clean, user-friendly, and visually engaging digital experiences. With hands-on experience in Figma, I specialize in crafting intuitive web designs and impactful email marketing designs that blend functionality with creativity. 
+                        My goal is to design interfaces that not only look great but also provide seamless experiences for users.</p>
+                    <p>I’m continuously learning and improving my design skills, eager to explore new trends and technologies in the UI/UX field. Whether 
+                        it’s designing a responsive website, refining a user journey, or building an engaging email campaign, I strive to bring ideas to life through thoughtful design.</p>
+                    
+                    <h3>Credentials</h3>
+                    <ul class="credentials-list">
+                        <li><i class="fas fa-certificate"></i> Certified Data Science Associate (TBD)</li>
+                        <li><i class="fas fa-certificate"></i> Certified Data Science Professional (TBD)</li>
+                    </ul>
+                </div>
+                
+                <div class="about-content">
+                    <h3>Achievements</h3>
+                    <ul class="achievements-list">
+                        <li><i class="fas fa-trophy"></i> Featured on Behance - Email Design Collection</li>
+                        <li><i class="fas fa-trophy"></i> 10,000+ downloads of UI kits on Figma Community</li>
+                    </ul>
+                    
+                    <h3>Education</h3>
+                    <ul class="education-list">
+                        <li><i class="fas fa-graduation-cap"></i> Bachelor Of Science in Information Technology - Divine Word College Of Calapan</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stacks Section -->
+    <section id="tech-stacks">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tech Stacks</h2>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-category">
+                    <h3>Software</h3>
+                    <ul class="skills-list">
+                        <li>
+                            <div class="skill-name">Figma</div>
+                            <div class="skill-bar"><div class="skill-level" style="width: 95%"></div></div>
+                        </li>
+                        <li>
+                            <div class="skill-name">Adobe Creative Suite</div>
+                            <div class="skill-bar"><div class="skill-level" style="width: 90%"></div></div>
+                        </li>
+                        <li>
+                            <div class="skill-name">Sketch</div>
+                            <div class="skill-bar"><div class="skill-level" style="width: 85%"></div></div>
+                        </li>
+                        <li>
+                            <div class="skill-name">Blender</div>
+                            <div class="skill-bar"><div class="skill-level" style="width: 70%"></div></div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="tech-category">
+                    <h3>Skills</h3>
+                    <ul class="skills-list">
+                        <li>
+                            <div class="skill-name">UI/UX Design</div>
+                            <div class="skill-bar"><div class="skill-level" style="width: 95%"></div></div>
+                        </li>
+                        <li>
+                            <div class="skill-name">Responsive Design</div>
+                            <div class="skill-bar"><div class="skill-level" style="width: 90%"></div></div>
+                        </li>
+                        <li>
+                            <div class="skill-name">Product Management</div>
+                            <div class="skill-bar"><div class="skill-level" style="width: 85%"></div></div>
+                        </li>
+                        <li>
+                            <div class="skill-name">Agile Methodology</div>
+                            <div class="skill-bar"><div class="skill-level" style="width: 80%"></div></div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="tech-category">
+                    <h3>Programming Languages</h3>
+                    <ul class="skills-list">
+                        <li>
+                            <div class="skill-name">JavaScript</div>
+                            <div class="skill-bar"><div class="skill-level" style="width: 90%"></div></div>
+                        </li>
+                        <li>
+                            <div class="skill-name">Python</div>
+                            <div class="skill-bar"><div class="skill-level" style="width: 45px;"></div></div>
+                        </li>
+                        <li>
+                            <div class="skill-name">HTML/CSS</div>
+                            <div class="skill-bar"><div class="skill-level" style="width: 95%"></div></div>
+                        </li>
+                        <li>
+                            <div class="skill-name">Java</div>
+                            <div class="skill-bar"><div class="skill-level" style="width: 75%"></div></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Projects</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="Assets/WebDesign.jpg" alt="Project 1" class="project-img">
+                    <div class="project-content">
+                        <h3>Octagon E-Commerce Website Redesign</h3>
+                        <p>Complete UI/UX redesign for a Octago E-commerce website.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">UI/UX</span>
+                            <span class="project-tag">Figma</span>
+                            <span class="project-tag">Web Design</span>
+                        </div>
+                        <a href="#" class="btn">View Project</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="Assets/Mobile.jpg" alt="Project 2" class="project-img">
+                    <div class="project-content">
+                        <h3>DWCC Mobile Canteen App</h3>
+                        <p>Designed a Canteen Application for.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Mobile</span>
+                            <span class="project-tag">Figma</span>
+                            <span class="project-tag">UI Design</span>
+                        </div>
+                        <a href="#" class="btn">View Project</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <img src="Assets/Frame 1.png" alt="Project 3" class="project-img">
+                    <div class="project-content">
+                        <h3>Email Marketing Designs</h3>
+                        <p>Created several Email Designs for Businesses.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Branding</span>
+                            <span class="project-tag">Media</span>
+                            <span class="project-tag">Figma</span>
+                        </div>
+                        <a href="#" class="btn">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Info</h2>
+            </div>
+            <div class="contact-info">
+                <p>Feel free to reach out to me for collaboration or just to say hello!</p>
+                <p><i class="fas fa-envelope"></i> kielt@yahoo.com</p>
+                <p><i class="fas fa-phone"></i> +63 9667988533</p>
+                <p><i class="fas fa-map-marker-alt"></i> Naujan, Oriental Mindoro, Philippines</p>
+                
+                <ul class="social-links">
+                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                    <li><a href="#"><i class="fab fa-github"></i></a></li>
+                    <li><a href="#"><i class="fab fa-dribbble"></i></a></li>
+                    <li><a href="#"><i class="fab fa-behance"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Ezekiel Tolentino. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
